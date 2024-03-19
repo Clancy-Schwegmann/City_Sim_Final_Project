@@ -1,10 +1,11 @@
 C++ Header Files:
 	#include <cmath>
-	#include <ctime>
-	#include <cstdlib>
-	#include <fstream>
+	#include <ctime> - used to access date functionality
+	#include <cstdlib> - used to access general C library functions.
+	#include <fstream> - used to access file input and output
 	#include <iostream>
-	#include <vector>
+	#include <vector> - used for class objects.
+  #include <map> - used to create a dictionary for the save file.
 	using namespace std;
 
 Class Files:
@@ -14,12 +15,59 @@ Class Files:
 
 	Menu.cpp:
 
-	FileManager.h
+	FileManager.h:
 		class FileManager:
 			public variables:
-			Save Data(),LoadData()
+			Save Data(),LoadData(),CheckNewGame(),ReadFile(),WriteFile()
 			private variables:
+      fileName = "savadata.dat"
+      const initFunds = 500000
+      gameData = map{}
+
+
 	FileManager.cpp:
+    function CreateData(initData):
+      -get gameData map variable.
+      gameData = 
+      {
+        -use ctime function to get current time.
+        "currentTime" : ctime.GetCurrentDate
+        -Initialize funds to specific amount.
+        "cityFunds" : initFunds
+        "cityPopulation" : 0 
+        "foodMarkets" : 0
+        "waterTowers" : 0
+        "militaryDefenses"
+        "banks" : 0
+      }
+
+    function ReadFile(Pointer to ofstream,character pointer to file):
+      open file  
+      if file doesn't open
+        return false
+      if file opens
+        return true
+
+      function WriteFile(Pointer to ifstream,character pointer to file):
+      open file  
+      if file doesn't open
+        return false
+      if file opens
+        return true
+
+
+    function SaveData():
+
+    function CheckNewGame():
+    create ofstream outData
+    bool newGame = ReadFile()
+      -if read file returns false then we start a new game file initializing all map values.
+      if(newGame)
+        -initialize data to file.
+        
+
+
+    function LoadData():
 		
 	MainGame.h:
 		class MainGame:
@@ -30,16 +78,23 @@ Class Files:
 		
 	MainGame.cpp:
 		function GameLoop():
-			Create new File Manager object.
+			Create new File Manager and Menu object.
 			-Check save file to see if game has been played before.
 
-			gameLoop = 0;
-      //here we just run the main loop
+      -1 = game running 0 = not running.
+			gameLoop = 1;
+      -here we just run the main loop
       while(gameLoop != 0):
-        
+        -most of the code runs here.
+
+
 			
 
 Main File:
-	Create new objects FileManaging Class
+	Create new object MainGame
+  Print "City Simulator"
+  -access main game loop using other class.
+  MainGame.GameLoop()
+  
 
 	
