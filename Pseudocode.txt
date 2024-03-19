@@ -1,0 +1,45 @@
+C++ Header Files:
+	#include <cmath>
+	#include <ctime>
+	#include <cstdlib>
+	#include <fstream>
+	#include <iostream>
+	#include <vector>
+	using namespace std;
+
+Class Files:
+	Menu.h:
+		class Menu:
+			
+
+	Menu.cpp:
+
+	FileManager.h
+		class FileManager:
+			public variables:
+			Save Data(),LoadData()
+			private variables:
+	FileManager.cpp:
+		
+	MainGame.h:
+		class MainGame:
+			public variables:
+				GameLoop()
+			private variables:
+				fileName = "SaveData.dat"
+		
+	MainGame.cpp:
+		function GameLoop():
+			Create new File Manager object.
+			-Check save file to see if game has been played before.
+
+			gameLoop = 0;
+      //here we just run the main loop
+      while(gameLoop != 0):
+        
+			
+
+Main File:
+	Create new objects FileManaging Class
+
+	
