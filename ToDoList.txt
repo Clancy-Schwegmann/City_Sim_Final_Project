@@ -1,0 +1,9 @@
+project stuff:
+add menu-ing (including function to dipslay menu string)
+game loop:
+check if new game - then initialize things and print out something if new game was detected.
+start getting input based on menu items
+create a sort-of navigation tree to navigate between menus
+
+after -> start creating city objects like city defenses, 
+after -> start detecting differences in time passing and run events (like gaining money every couple hours) or surviving a city attack/ weather, etc.

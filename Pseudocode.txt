@@ -11,9 +11,90 @@ C++ Header Files:
 Class Files:
 	Menu.h:
 		class Menu:
-			
+			public variables:
+        MainMenu(),PurchaseMenu(),DisplayMenu()
+      private:
+        -Menu array keeps track of the current menu to be displayed using the DisplayMenu() function.
+        vector<string> menuArray
 
 	Menu.cpp:
+    function MainMenu():
+      -This function outputs the main menu options to the player.
+      menuArray = {
+        "Display City Information"
+        "Rename city"
+        "Purchase new city elements"
+        "Sell city elements"
+        "Save Game",
+        "Reset Game",
+        "Exit Game"
+      }
+
+    function SellAmountMenu(gameData{},object):
+
+    function ElementSelection():
+      -This function is consistent with most city buildings, we can reuse it for all of the buildings.
+      print "You are interested in a new addition to the city, what would you like to do?\n"
+       -menuArray should look something like this. (add the following items)
+      menuArray = {
+        "Purchase",
+        "Sell",
+        "Go Back"
+        return object
+      }
+
+    function PurchaseAmountMenu(gameData{},object):
+      print "Current Funds: " + gameData{}.cityFunds + "\n"
+      print "Cost per " objectName "is" object.Cost + "\n"
+      print "How many " + objectName + "would you like to purchase?\n" 
+      print "0) Go Back\n"
+      -get input
+      itemCount = input
+      while itemCount != 0:
+        -Check if we have hit the object limit.
+        if(gameData.objectCount < object.Limit):
+          print "You cannot purchase anymore of this city element.\n"
+          print "You currently have" + gameData.objectCount + "and the limit for this object is " object.Limit "\n"
+          break
+        -get object cost.
+        totalCost = itemCount * object.cost
+        -check if we have enough funds. 
+        if(gameData.cityFunds < totalCost)
+        -if so, buy the item.
+        newAmount = gameData.objectAmount + itemCount
+        gameData.insert(newAmount)
+        -subtract funds as well, and exit loop.
+        gameData.cityFunds -= totalCost
+        break loop
+        -if not display message.
+        print "That amount could not be purchased, try again or go back to the menu.\n"
+        -use floor function to round the number down and remove the decimal.
+        print "The maximum amount of this element that you could buy is " + floor(gameData.cityFunds / gameData.cityFunds) + "\n"
+        -Reprompt user.
+        itemCount = input
+        continue loop
+        -go back in the menu.
+
+      
+    
+
+    function PurchaseMenu(object):
+      -This function is consistent with most city buildings, we can reuse it for all of the buildings.
+      -menuArray should look something like this. (add the following items)
+
+      print "You are interested in a new addition to the city, what would you like to do?\n"
+      menuArray = {
+        "Purchase" + objectName 
+        "Sell" + objectName
+        "Go Back"
+      }
+
+    function DisplayMenu():
+      -loop through menuArray contents.
+      -example should look something like this: 1) buy 2) sell 3) go back
+      int i = 0
+      for each item in menuArray:
+        print i + ")" + menuArray.at(i) + newline
 
 	FileManager.h:
 		class FileManager:
@@ -22,7 +103,7 @@ Class Files:
 			private variables:
       fileName = "savadata.dat"
       const initFunds = 500000
-      gameData = map{}
+      gameData = map<string,float>
 
 
 	FileManager.cpp:
@@ -32,12 +113,20 @@ Class Files:
       {
         -use ctime function to get current time.
         "currentTime" : ctime.GetCurrentDate
+        -get name of the city.
+        "cityName" : ""
         -Initialize funds to specific amount.
         "cityFunds" : initFunds
         "cityPopulation" : 0 
         "foodMarkets" : 0
         "waterTowers" : 0
-        "militaryDefenses"
+        "cityDefenses" : 0
+        "weatherTowers" : 0
+        "Parks" : 0
+        "Zoos" : 0
+        "Museums" : 0
+        "Schools" : 0
+        "Libraries" : 0
         "banks" : 0
       }
 
@@ -64,6 +153,10 @@ Class Files:
       -if read file returns false then we start a new game file initializing all map values.
       if(newGame)
         -initialize data to file.
+        CreateData();
+      else
+        -get data from existing file.
+        LoadData()
         
 
 
@@ -80,6 +173,8 @@ Class Files:
 		function GameLoop():
 			Create new File Manager and Menu object.
 			-Check save file to see if game has been played before.
+
+
 
       -1 = game running 0 = not running.
 			gameLoop = 1;
