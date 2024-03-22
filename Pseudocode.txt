@@ -12,10 +12,12 @@ Class Files:
 	Menu.h:
 		class Menu:
 			public variables:
-        MainMenu(),PurchaseMenu(),DisplayMenu()
+        MainMenu(),PurchaseMenu(),DisplayMenu(),CityObjectSelection()
       private:
         -Menu array keeps track of the current menu to be displayed using the DisplayMenu() function.
         vector<string> menuArray
+        userInput
+        displayMenuInput
 
 	Menu.cpp:
     function MainMenu():
@@ -23,25 +25,46 @@ Class Files:
       menuArray = {
         "Display City Information"
         "Rename city"
-        "Purchase new city elements"
-        "Sell city elements"
+        "Manage City"
         "Save Game",
         "Reset Game",
         "Exit Game"
       }
 
+    function CityObjectOptions(object):
+      menuArray = {
+        "Show description"
+        "Purchase"
+        "Sell"
+        "Go back"
+      }
+
     function SellAmountMenu(gameData{},object):
 
-    function ElementSelection():
+    -Input purchaseOption ("buy" or "sell")
+    -Outputs object based on user input.
+
+    function CityObjectSelection(purchaseOption):
       -This function is consistent with most city buildings, we can reuse it for all of the buildings.
-      print "You are interested in a new addition to the city, what would you like to do?\n"
+      print "Choose which element you would like to " + purchaseOption + "\n"
+
        -menuArray should look something like this. (add the following items)
       menuArray = {
-        "Purchase",
-        "Sell",
-        "Go Back"
-        return object
+        "Food Market",
+        "Water Tower",
+        "City Defense Office",
+        "Weather Tower",
+        "Park",
+        "Zoo",
+        "Museum",
+        "School",
+        "Library",
+        "Banks"
       }
+      -store current user input to display input.
+      userInput = DisplayMenu()
+
+      return object
 
     function PurchaseAmountMenu(gameData{},object):
       print "Current Funds: " + gameData{}.cityFunds + "\n"
@@ -89,12 +112,28 @@ Class Files:
         "Go Back"
       }
 
+    -Outputs all menu items in the menu array.
     function DisplayMenu():
       -loop through menuArray contents.
       -example should look something like this: 1) buy 2) sell 3) go back
       int i = 0
       for each item in menuArray:
         print i + ")" + menuArray.at(i) + newline
+      -loop through until user enters a valid input.
+      -Note: this loop will always continuously run, so we use continue and break statements to control the flow of the loop.
+      while(0 == 0):
+        -use try-catch statement here.
+        try():
+          -if between user input between 0 and array size, then accept input, else, return error.
+          if((userInput >= 0) || (userInput < menuArray(size)))
+            break
+          else
+            throwError("You must enter a valid input between 0 and " + menuArray(size) + "\n" )
+        catch(error):
+          print "Error found, you must re-enter input."
+          continue
+      return displayMenuInput
+      
 
 	FileManager.h:
 		class FileManager:
